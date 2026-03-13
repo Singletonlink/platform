@@ -1,7 +1,6 @@
 .venv/
 env/
 venv/
-auth/
 models/
 
 __pycache__/

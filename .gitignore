@@ -1,9 +1,7 @@
 .venv/
 env/
 venv/
-auth/
 models/
-api/
 
 __pycache__/
 *.pyc
