@@ -1,11 +1,11 @@
-##  Platform (Teams / Projects / Tasks)
+### Platform (Teams / Projects / Tasks)
 
 Небольшая заготовка для управления командами, проектами и задачами.
 
 - **Backend**: Flask (`backend/`) – отдаёт API и фронт.
 - **Frontend**: статический HTML/CSS (`frontend/`) – интерфейс с вкладками Dashboard / Teams / Projects / Tasks.
 
-## Как запустить backend (Flask)
+### Как запустить backend (Flask)
 
 ```bash
 cd backend
@@ -19,14 +19,14 @@ python main.py
 
 - `http://<host>:<port>` – интерфейс (frontend/index.html, раздаётся Flask’ом)
 
-## Platform (Teams / Projects / Tasks)
+### Platform (Teams / Projects / Tasks)
 
 Stack:
 - Backend: **Flask** (`backend/`)
 
 
 
-## Как запустить backend (Flask)
+### Как запустить backend (Flask)
 
 ```bash
 cd backend
