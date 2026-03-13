@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Platform</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <div class="nav-title">Platform</div>
+        <div class="nav-item active" data-page="Dashboard">
+          Dashboard
+        </div>
+        <div class="nav-item" data-page="Teams">
+          Teams
+        </div>
+        <div class="nav-item" data-page="Projects">
+          Projects
+        </div>
+        <div class="nav-item" data-page="Tasks">
+          Tasks
+        </div>
+      </aside>
+      <main class="content">
+        <div class="card">
+          <h2 id="page-title">Dashboard</h2>
+          <div id="page-content">
+            <p class="muted">
+              Здесь будет содержимое страницы
+              <code id="page-code">Dashboard</code>.
+            </p>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const navItems = document.querySelectorAll(".nav-item");
+        const titleEl = document.getElementById("page-title");
+        const codeEl = document.getElementById("page-code");
+        const contentEl = document.getElementById("page-content");
+        const projects = [];
+
+        function renderPage(page) {
+          titleEl.textContent = page;
+          codeEl.textContent = page;
+
+          if (page === "Projects") {
+            contentEl.innerHTML = `
+              <div class="projects-header">
+                <p class="muted">Добавьте проект для задач.</p>
+                <div class="projects-form">
+                  <input id="project-name-input" type="text" placeholder="Название проекта" />
+                  <button id="add-project-btn">Add project</button>
+                </div>
+                <ul id="projects-list" class="projects-list"></ul>
+              </div>
+            `;
+
+            const input = document.getElementById("project-name-input");
+            const btn = document.getElementById("add-project-btn");
+            const list = document.getElementById("projects-list");
+
+            function rerenderList() {
+              list.innerHTML = "";
+              projects.forEach((name) => {
+                const li = document.createElement("li");
+                li.textContent = name;
+                list.appendChild(li);
+              });
+            }
+
+            btn.addEventListener("click", () => {
+              const name = (input.value || "").trim();
+              if (!name) return;
+              projects.push(name);
+              input.value = "";
+              rerenderList();
+            });
+
+            input.addEventListener("keyup", (e) => {
+              if (e.key === "Enter") {
+                btn.click();
+              }
+            });
+
+            rerenderList();
+          } else {
+            contentEl.innerHTML = `
+              <p class="muted">
+              страницы
+                <code id="page-code">${page}</code>.
+              </p>
+            `;
+          }
+        }
+
+        navItems.forEach((item) => {
+          item.addEventListener("click", () => {
+            navItems.forEach((i) => i.classList.remove("active"));
+            item.classList.add("active");
+
+            const page = item.getAttribute("data-page") || "";
+            renderPage(page);
+          });
+        });
+
+        // начальная страница
+        renderPage("Dashboard");
+      });
+    </script>
+  </body>
+  </html>
+
